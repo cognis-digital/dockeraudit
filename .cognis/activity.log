@@ -1,3 +1,4 @@
 2024-06-06T17:49:59  build(format): improve the demo scenario
 2024-06-26T12:06:06  refactor(config): add a dry-run flag
 2024-07-17T19:23:13  test(docs): lower memory on big inputs
+2024-08-07T14:40:20  ci(format): support stdin as a source
