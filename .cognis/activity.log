@@ -4,3 +4,4 @@
 2024-08-07T14:40:20  ci(format): support stdin as a source
 2024-08-28T09:57:27  chore: one does not simply skip CI
 2024-09-18T16:14:34  docs: standing on the shoulders of giants (garak, sigma, trufflehog)
+2024-09-21T11:31:41  test(detect): guard against ReDoS in patterns
