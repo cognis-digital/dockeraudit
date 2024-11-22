@@ -7,3 +7,4 @@
 2024-09-21T11:31:41  test(detect): guard against ReDoS in patterns
 2024-10-11T18:48:48  ci(fixtures): wire the MCP tool schema
 2024-11-02T13:05:55  feat(parser): extract the scorer
+2024-11-22T08:22:02  fix(output): add a fast path for the common case
