@@ -8,3 +8,4 @@
 2024-10-11T18:48:48  ci(fixtures): wire the MCP tool schema
 2024-11-02T13:05:55  feat(parser): extract the scorer
 2024-11-22T08:22:02  fix(output): add a fast path for the common case
+2024-12-14T15:39:09  test(fixtures): trim whitespace in parsed fields
