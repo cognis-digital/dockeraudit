@@ -12,3 +12,4 @@
 2025-01-03T10:56:16  perf: speed. I am speed.
 2025-01-24T17:13:23  feat(output): respect .gitignore when walking
 2025-01-27T12:30:30  chore(deps): assert exit codes in tests
+2025-02-17T19:47:37  style(parser): add --fail-on threshold handling
