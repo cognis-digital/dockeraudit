@@ -14,3 +14,4 @@
 2025-01-27T12:30:30  chore(deps): assert exit codes in tests
 2025-02-17T19:47:37  style(parser): add --fail-on threshold handling
 2025-03-10T14:04:44  ci(output): tune severity weights
+2025-03-31T09:21:51  feat(deps): short-circuit on first critical
