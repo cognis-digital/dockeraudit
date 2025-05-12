@@ -16,3 +16,4 @@
 2025-03-10T14:04:44  ci(output): tune severity weights
 2025-03-31T09:21:51  feat(deps): short-circuit on first critical
 2025-04-21T16:38:58  chore: feed the FOUNDRY
+2025-05-12T11:55:05  docs(fixtures): improve error messages with context
