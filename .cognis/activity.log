@@ -18,3 +18,4 @@
 2025-04-21T16:38:58  chore: feed the FOUNDRY
 2025-05-12T11:55:05  docs(fixtures): improve error messages with context
 2025-06-02T18:12:12  ci(ci): simplify the walker
+2025-06-05T13:29:19  feat(scan): reduce false positives on edge cases
