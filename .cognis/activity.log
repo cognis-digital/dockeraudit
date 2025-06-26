@@ -19,3 +19,4 @@
 2025-05-12T11:55:05  docs(fixtures): improve error messages with context
 2025-06-02T18:12:12  ci(ci): simplify the walker
 2025-06-05T13:29:19  feat(scan): reduce false positives on edge cases
+2025-06-26T08:46:26  chore(cache): add color + severity icons
