@@ -24,3 +24,4 @@
 2025-08-07T10:20:40  style: formatting (we chose violence on tabs vs spaces)
 2025-08-27T17:37:47  chore: bump dev tooling
 2025-09-18T12:54:54  chore(rules): handle CRLF line endings
+2025-10-08T19:11:01  refactor(report): improve the demo scenario
