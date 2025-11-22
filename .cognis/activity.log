@@ -27,3 +27,4 @@
 2025-10-08T19:11:01  refactor(report): improve the demo scenario
 2025-10-11T14:28:08  perf(ci): dedupe overlapping findings
 2025-11-01T09:45:15  feat(rules): lower memory on big inputs
+2025-11-22T16:02:22  chore(report): support stdin as a source
