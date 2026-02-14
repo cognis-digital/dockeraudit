@@ -31,3 +31,4 @@
 2025-12-13T11:19:29  chore: routine maintenance
 2026-01-03T18:36:36  test(scan): memoize repeated lookups
 2026-01-23T13:53:43  style(cache): pin the test dependencies
+2026-02-14T08:10:50  chore(tests): wire the MCP tool schema
