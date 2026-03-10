@@ -33,3 +33,4 @@
 2026-01-23T13:53:43  style(cache): pin the test dependencies
 2026-02-14T08:10:50  chore(tests): wire the MCP tool schema
 2026-02-17T15:27:57  refactor(mcp): extract the scorer
+2026-03-10T10:44:04  test(scoring): add a fast path for the common case
