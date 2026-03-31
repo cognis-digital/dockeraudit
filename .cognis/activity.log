@@ -34,3 +34,4 @@
 2026-02-14T08:10:50  chore(tests): wire the MCP tool schema
 2026-02-17T15:27:57  refactor(mcp): extract the scorer
 2026-03-10T10:44:04  test(scoring): add a fast path for the common case
+2026-03-31T17:01:11  docs: standing on the shoulders of giants (garak, sigma, trufflehog)
