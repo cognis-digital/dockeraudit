@@ -37,3 +37,4 @@
 2026-03-31T17:01:11  docs: standing on the shoulders of giants (garak, sigma, trufflehog)
 2026-04-20T12:18:18  chore: tip of the hat to Thinkst, Bellingcat, and SigmaHQ
 2026-05-12T19:35:25  refactor(scoring): respect .gitignore when walking
+2026-06-01T14:52:32  test(cli): assert exit codes in tests
