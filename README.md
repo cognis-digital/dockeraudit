@@ -124,7 +124,17 @@ Pipes into your stack: **SARIF** for code-scanning, **JSON** for anything, an **
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="install-anywhere"></a>
-## Install anywhere
+## Install — every way, every platform
+
+```bash
+pip install "git+https://github.com/cognis-digital/dockeraudit.git"    # pip (works today)
+pipx install "git+https://github.com/cognis-digital/dockeraudit.git"   # isolated CLI
+uv tool install "git+https://github.com/cognis-digital/dockeraudit.git" # uv
+pip install cognis-dockeraudit                                          # PyPI (when published)
+docker run --rm ghcr.io/cognis-digital/dockeraudit:latest --help        # Docker
+brew install cognis-digital/tap/dockeraudit                             # Homebrew tap
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/dockeraudit/main/install.sh | sh
+```
 
 | Linux | macOS | Windows | Docker | Cloud |
 |---|---|---|---|---|
