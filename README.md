@@ -36,9 +36,14 @@ Audit Dockerfiles + image configs for security smells — without standing up he
 <a name="features"></a>
 ## Features
 
-- ✅ Todo
-- ✅ Fixme
-- ✅ Xxx
+- ✅ Parse Dockerfile
+- ✅ Rule
+- ✅ Audit Dockerfile Text
+- ✅ Audit Path
+- ✅ Summarize
+- ✅ Worst Severity
+- ✅ Render Json
+- ✅ Render Table
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
