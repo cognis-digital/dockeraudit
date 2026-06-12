@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-dockeraudit
+pip install "git+https://github.com/cognis-digital/dockeraudit.git"
 dockeraudit scan .            # → prioritized findings in seconds
 ```
 
@@ -53,7 +53,7 @@ Audit Dockerfiles + image configs for security smells — without standing up he
 ## Quick start
 
 ```bash
-pip install cognis-dockeraudit
+pip install "git+https://github.com/cognis-digital/dockeraudit.git"
 dockeraudit --version
 dockeraudit scan .                       # scan current project
 dockeraudit scan . --format json         # machine-readable
