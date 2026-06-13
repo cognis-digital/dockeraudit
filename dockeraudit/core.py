@@ -7,9 +7,8 @@ from __future__ import annotations
 
 import html
 import json
-import os
 import re
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, asdict
 from enum import Enum
 from typing import Callable, Iterable, List, Optional
 

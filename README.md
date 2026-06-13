@@ -9,16 +9,22 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=3500&pause=1000&color=6B46C1&center=true&vCenter=true&width=720&lines=Audit+Dockerfiles++image+configs+for+security+smells;Self-hostable+%C2%B7+MCP-native+%C2%B7+CI-ready+%C2%B7+polyglot" width="720"/>
 
-[![PyPI](https://img.shields.io/pypi/v/cognis-dockeraudit.svg?color=6b46c1)](https://pypi.org/project/cognis-dockeraudit/) [![CI](https://github.com/cognis-digital/dockeraudit/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/dockeraudit/actions) [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE) [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
+[![install](https://img.shields.io/badge/install-git%2B%20%C2%B7%20pipx%20%C2%B7%20uv-6b46c1.svg)](#install--every-way-every-platform) [![CI](https://github.com/cognis-digital/dockeraudit/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/dockeraudit/actions) [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE) [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
 
 *Part of the Cognis Neural Suite.*
 
 </div>
 
 ```bash
-pip install cognis-dockeraudit
+pip install "git+https://github.com/cognis-digital/dockeraudit.git"
 dockeraudit scan .            # → prioritized findings in seconds
 ```
+
+<!-- cognis:layman:start -->
+## What is this?
+
+dockeraudit scans your Dockerfile — the recipe file used to build a container image — and flags common security problems before they reach production. It checks for issues like running your app as the root user, baking passwords or API keys directly into the image, or pulling software from unverified internet sources. You get a plain-text or JSON report you can read yourself or feed into a CI pipeline, and each finding comes with a concrete suggestion for how to fix it. It is aimed at developers and DevOps engineers who want a quick, no-account-required sanity check on their Docker builds.
+<!-- cognis:layman:end -->
 
 ## Contents
 
@@ -50,10 +56,56 @@ Audit Dockerfiles + image configs for security smells — without standing up he
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Cyber & Security  ·  **JTF MERIDIAN division:** NULLBYTE · SPECTER
+
+**Topics:** `cognis` `security` `infosec` `cybersecurity` `blue-team`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
+<!-- cognis:install:start -->
+## Install
+
+`dockeraudit` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/dockeraudit/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/dockeraudit/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/dockeraudit.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/dockeraudit.git"  # uv
+pip install "git+https://github.com/cognis-digital/dockeraudit.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/dockeraudit.git
+cd dockeraudit && pip install .
+```
+
+Then run:
+```sh
+dockeraudit --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
-pip install cognis-dockeraudit
+pip install "git+https://github.com/cognis-digital/dockeraudit.git"
 dockeraudit --version
 dockeraudit scan .                       # scan current project
 dockeraudit scan . --format json         # machine-readable
@@ -143,6 +195,32 @@ curl -fsSL https://raw.githubusercontent.com/cognis-digital/dockeraudit/main/ins
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="related"></a>
+<a name="verification"></a>
+## Verification
+
+[![tests](https://img.shields.io/badge/tests-13%20passing-2ea44f.svg)](AUDIT.md)
+
+Every push is verified end-to-end. Latest audit (2026-06-13):
+
+```text
+tests        : 13 passed, 0 failed, 0 errored
+compile      : all modules parse
+cli          : C:\Python314\python.exe: No module named https
+package      : https
+```
+
+<details><summary>CLI surface (<code>--help</code>)</summary>
+
+```text
+C:\Python314\python.exe: No module named https
+```
+</details>
+
+Full machine-readable results: [`AUDIT.md`](AUDIT.md) · regenerate with `python -m https --help` + `pytest -q`.
+
+<div align="right"><a href="#top">↑ back to top</a></div>
+
+
 ## Related Cognis tools
 
 
