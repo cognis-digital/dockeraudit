@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/dockeraudit.git"
 dockeraudit scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+dockeraudit scans your Dockerfile — the recipe file used to build a container image — and flags common security problems before they reach production. It checks for issues like running your app as the root user, baking passwords or API keys directly into the image, or pulling software from unverified internet sources. You get a plain-text or JSON report you can read yourself or feed into a CI pipeline, and each finding comes with a concrete suggestion for how to fix it. It is aimed at developers and DevOps engineers who want a quick, no-account-required sanity check on their Docker builds.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why dockeraudit?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -50,6 +56,42 @@ Audit Dockerfiles + image configs for security smells — without standing up he
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`dockeraudit` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/dockeraudit/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/dockeraudit/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/dockeraudit.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/dockeraudit.git"  # uv
+pip install "git+https://github.com/cognis-digital/dockeraudit.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/dockeraudit.git
+cd dockeraudit && pip install .
+```
+
+Then run:
+```sh
+dockeraudit --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
