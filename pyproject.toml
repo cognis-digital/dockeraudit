@@ -34,3 +34,6 @@ dockeraudit = "dockeraudit.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["dockeraudit"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
