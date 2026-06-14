@@ -2,6 +2,7 @@
 import json
 import os
 import sys
+import tempfile
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -15,9 +16,11 @@ from dockeraudit import (  # noqa: E402
 from dockeraudit.cli import main  # noqa: E402
 from dockeraudit.core import (  # noqa: E402
     Severity,
+    audit_path,
     parse_dockerfile,
     render_html,
     render_json,
+    render_table,
     worst_severity,
 )
 
@@ -126,6 +129,107 @@ class TestCLI(unittest.TestCase):
     def test_fail_level_gate(self):
         rc = main(["audit", self._demo(), "--fail-level", "CRITICAL"])
         self.assertEqual(rc, 1)
+
+
+class TestEdgeCases(unittest.TestCase):
+    """Edge-case and error-path tests added during hardening."""
+
+    # ------------------------------------------------------------------
+    # Parser edge cases
+    # ------------------------------------------------------------------
+
+    def test_empty_dockerfile_no_crash(self):
+        """An empty file must not raise; it has no instructions."""
+        instrs = parse_dockerfile("")
+        self.assertEqual(instrs, [])
+
+    def test_only_comments_no_crash(self):
+        """A file that is only comments must not raise."""
+        findings = audit_dockerfile_text("# this is just a comment\n")
+        # DA001 fires (no USER) but no other rule should crash.
+        self.assertIsInstance(findings, list)
+
+    def test_empty_findings_renderers(self):
+        """All renderers must handle an empty findings list gracefully."""
+        table = render_table("test.Dockerfile", [])
+        self.assertIn("No findings", table)
+
+        html_out = render_html("test.Dockerfile", [])
+        self.assertIn("No findings", html_out)
+        self.assertIn("<!DOCTYPE html>", html_out)
+
+        payload = json.loads(render_json("test.Dockerfile", []))
+        self.assertEqual(payload["summary"]["total"], 0)
+        self.assertEqual(payload["findings"], [])
+
+    def test_worst_severity_empty_list(self):
+        """worst_severity of an empty list must return None (not crash)."""
+        self.assertIsNone(worst_severity([]))
+
+    # ------------------------------------------------------------------
+    # audit_path error paths
+    # ------------------------------------------------------------------
+
+    def test_audit_path_missing_file_raises(self):
+        """audit_path raises FileNotFoundError for a nonexistent path."""
+        with self.assertRaises(FileNotFoundError):
+            audit_path("__nonexistent_file_xyz__.Dockerfile")
+
+    def test_audit_path_oversized_file_raises(self):
+        """audit_path raises ValueError when the file exceeds the size limit."""
+        from dockeraudit.core import _MAX_DOCKERFILE_BYTES
+        with tempfile.NamedTemporaryFile(
+            mode="wb", suffix=".Dockerfile", delete=False
+        ) as fh:
+            fh.write(b"FROM scratch\n" * 100)
+            # Write enough zeroes to exceed the limit.
+            fh.write(b"\x00" * (_MAX_DOCKERFILE_BYTES + 1))
+            tmp_path = fh.name
+        try:
+            with self.assertRaises(ValueError) as ctx:
+                audit_path(tmp_path)
+            self.assertIn("too large", str(ctx.exception))
+        finally:
+            os.unlink(tmp_path)
+
+    # ------------------------------------------------------------------
+    # CLI error paths
+    # ------------------------------------------------------------------
+
+    def test_cli_missing_file_exit2(self):
+        """CLI returns exit code 2 for a missing file."""
+        rc = main(["audit", "__no_such_file__.Dockerfile"])
+        self.assertEqual(rc, 2)
+
+    def test_cli_oversized_file_exit2(self):
+        """CLI returns exit code 2 when the file is too large."""
+        from dockeraudit.core import _MAX_DOCKERFILE_BYTES
+        with tempfile.NamedTemporaryFile(
+            mode="wb", suffix=".Dockerfile", delete=False
+        ) as fh:
+            fh.write(b"\x00" * (_MAX_DOCKERFILE_BYTES + 1))
+            tmp_path = fh.name
+        try:
+            rc = main(["audit", tmp_path])
+            self.assertEqual(rc, 2)
+        finally:
+            os.unlink(tmp_path)
+
+    def test_cli_no_subcommand_exits_zero(self):
+        """Invoking without a subcommand prints help and returns 0."""
+        rc = main([])
+        self.assertEqual(rc, 0)
+
+    # ------------------------------------------------------------------
+    # mcp_server importability
+    # ------------------------------------------------------------------
+
+    def test_mcp_server_imports_without_error(self):
+        """mcp_server must be importable (scan/to_json aliases must resolve)."""
+        import importlib
+        mod = importlib.import_module("dockeraudit.mcp_server")
+        self.assertTrue(callable(mod.scan))
+        self.assertTrue(callable(mod.to_json))
 
 
 if __name__ == "__main__":

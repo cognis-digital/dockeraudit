@@ -322,7 +322,28 @@ def audit_dockerfile_text(text: str, source: str = "<text>") -> List[Finding]:
     return findings
 
 
+_MAX_DOCKERFILE_BYTES = 1 * 1024 * 1024  # 1 MiB — Dockerfiles are never this large
+
+
 def audit_path(path: str) -> List[Finding]:
+    """Read *path* and return findings.
+
+    Raises:
+        FileNotFoundError: path does not exist.
+        OSError: path is a directory, unreadable, or too large.
+        ValueError: file exceeds the 1 MiB safety limit.
+    """
+    import os as _os
+    try:
+        size = _os.path.getsize(path)
+    except OSError:
+        # Let the open() below produce the canonical error.
+        size = 0
+    if size > _MAX_DOCKERFILE_BYTES:
+        raise ValueError(
+            f"{path!r} is {size:,} bytes — too large to be a Dockerfile "
+            f"(limit {_MAX_DOCKERFILE_BYTES:,} bytes)"
+        )
     with open(path, "r", encoding="utf-8", errors="replace") as fh:
         return audit_dockerfile_text(fh.read(), source=path)
 

@@ -55,6 +55,9 @@ def _cmd_audit(args) -> int:
     except FileNotFoundError:
         print(f"error: file not found: {args.path}", file=sys.stderr)
         return 2
+    except ValueError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
     except OSError as e:
         print(f"error: cannot read {args.path}: {e}", file=sys.stderr)
         return 2
