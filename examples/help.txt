@@ -1,0 +1,14 @@
+$ dockeraudit-emit --help
+
+usage: dockeraudit [-h] [--version] {audit,rules} ...
+
+Audit Dockerfiles for security smells and container hygiene.
+
+positional arguments:
+  {audit,rules}
+    audit        Audit a Dockerfile.
+    rules        List the audit rules.
+
+options:
+  -h, --help     show this help message and exit
+  --version      show program's version number and exit

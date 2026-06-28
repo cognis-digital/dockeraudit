@@ -42,6 +42,54 @@ dockeraudit scan .            # → prioritized findings in seconds
 
 
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ dockeraudit-emit --version
+dockeraudit 0.1.0
+```
+
+```console
+$ dockeraudit-emit --help
+usage: dockeraudit [-h] [--version] {audit,rules} ...
+
+Audit Dockerfiles for security smells and container hygiene.
+
+positional arguments:
+  {audit,rules}
+    audit        Audit a Dockerfile.
+    rules        List the audit rules.
+
+options:
+  -h, --help     show this help message and exit
+  --version      show program's version number and exit
+```
+
+```console
+$ dockeraudit-emit rules
+dockeraudit 0.1.0 - 11 rules
+------------------------------------------------------------
+  DA001   HIGH      Container runs as root (no non-root USER)
+  DA002   MEDIUM    Base image uses :latest or untagged
+  DA003   CRITICAL  Hardcoded secret in ENV/ARG
+  DA004   HIGH      Pipe-to-shell install (curl|sh)
+  DA005   LOW       Use of sudo inside RUN
+  DA006   MEDIUM    Overly permissive chmod (777)
+  DA007   LOW       ADD used where COPY suffices
+  DA008   MEDIUM    Privileged port exposed / runs on 22
+  DA009   LOW       apt-get install without cache cleanup
+  DA010   LOW       Missing HEALTHCHECK
+  DA011   MEDIUM    Wildcard COPY/ADD of build context
+```
+
+> Blocks above are real `dockeraudit` output — reproduce them from a clone.
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install** the CLI:

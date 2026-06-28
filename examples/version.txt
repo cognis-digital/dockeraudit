@@ -1,0 +1,3 @@
+$ dockeraudit-emit --version
+
+dockeraudit 0.1.0
